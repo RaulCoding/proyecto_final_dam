@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_final_dam/components/dialog_box.dart';
-import 'package:proyecto_final_dam/components/todo_tile.dart';
+import 'package:proyecto_final_dam/components/components_barrell.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

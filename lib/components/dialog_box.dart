@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_final_dam/components/mybutton.dart';
+import 'package:proyecto_final_dam/components/components_barrell.dart';
 
 class DialogBox extends StatelessWidget {
   final controller;
