@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -11,27 +12,26 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Icon(
+                Icons.assignment,
+                size: 100,
+              ),
               const SizedBox(height: 25),
               // Nombre de la app
-              const Text(
-                'TO DO LIST APP',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold, 
-                  fontSize: 24
-                ),
+              Text('TO DO LIST APP',style: GoogleFonts.bebasNeue(fontSize: 52),
               ),
               const SizedBox(height: 10),
-              const Text(
-                'Inicie sesión para comenzar',
-                style: TextStyle(
-                  fontSize: 20
-                ),
+              const Text('Inicie sesión para comenzar',style: TextStyle(fontSize: 20),
               ),
+              
+              const SizedBox(height: 50),
+              
               //campo de texto email
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -55,6 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               
               const SizedBox(height: 10),
+              
               //campo de texto contraseña
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -77,6 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
+              
               const SizedBox(height: 10),
                            
               //Botón de iniciar sesión
@@ -89,27 +91,25 @@ class _LoginScreenState extends State<LoginScreen> {
                     borderRadius: BorderRadius.circular(100)  
                   ),
                   child: const Center(
-                      child: Text(
-                        'Iniciar Sesión',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
+                      child: Text('Iniciar Sesión',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
                       ),
                   ),
                 ),
               ),
+              
               const SizedBox(height: 10),
+              
               //No es miembro? registrarse
               const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('¿No tienes cuenta?'),
-                  Text('Registrate ahora', style: TextStyle(color: Colors.blue),),
-                  
-                ],)
-              
-            ],),
+                  Text('¿No tienes cuenta?', style: TextStyle(fontWeight: FontWeight.bold)),
+                  SizedBox(width: 5),
+                  Text('Registrate ahora', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
+                ],
+              )
+            ],
+          ),
         ),
       )
     );
