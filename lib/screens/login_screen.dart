@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  final VoidCallback showRegisterPage;
+  const LoginScreen({super.key, required this.showRegisterPage});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -125,12 +126,21 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 10),
                 
                 //No es miembro? registrarse
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('¿No tienes cuenta?', style: TextStyle(fontWeight: FontWeight.bold)),
-                    SizedBox(width: 5),
-                    Text('Registrate ahora', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
+                    const Text('¿No tienes cuenta?', style: TextStyle(fontWeight: FontWeight.bold)),
+                    const SizedBox(width: 5),
+                    GestureDetector(
+                      onTap: widget.showRegisterPage,
+                      child: const Text(
+                        'Registrate ahora', 
+                        style: TextStyle(
+                          color: Colors.blue, 
+                          fontWeight: FontWeight.bold
+                        )
+                      )
+                    ),
                   ],
                 )
               ],
