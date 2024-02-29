@@ -8,7 +8,6 @@ environment:
 
 dependencies:
   firebase_auth: ^4.17.5
-  firebase_core: ^2.25.5
   flutter:
     sdk: flutter
   flutter_slidable: ^3.0.1
