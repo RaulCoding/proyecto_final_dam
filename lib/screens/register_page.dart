@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,15 +15,33 @@ class _RegisterPageState extends State<RegisterPage> {
   //Controladores de texto
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
   
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    
     super.dispose();
   }
   
-  Future signUp() async {}  
+  Future signUp() async {
+    if(passwordConfirmed()){
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: _emailController.text.trim(), 
+      password: _passwordController.text.trim(),
+    );
+    }
+  }
+  
+  bool passwordConfirmed(){
+    if (_passwordController.text.trim() == _confirmPasswordController.text.trim()){
+      return true;
+      } else {
+      return false;
+      }
+  }
   
   
   @override
@@ -91,6 +110,32 @@ class _RegisterPageState extends State<RegisterPage> {
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Contraseña',
+                          hintStyle: TextStyle(color: Colors.black38),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                
+                 const SizedBox(height: 10),
+                 
+                //campo de texto confirmar contraseña
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      border: Border.all(color: Colors.white),
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: TextField(
+                        controller: _confirmPasswordController,
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Confirmar contraseña',
                           hintStyle: TextStyle(color: Colors.black38),
                         ),
                       ),
