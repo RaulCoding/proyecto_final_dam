@@ -5,8 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginScreen extends StatefulWidget {
-  final VoidCallback showRegisterScreen;
-  const LoginScreen({super.key, required this.showRegisterScreen});
+  final VoidCallback showRegisterPage;
+  const LoginScreen({super.key, required this.showRegisterPage});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -131,11 +131,21 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('¿No tienes cuenta?', style: TextStyle(fontWeight: FontWeight.bold)),
-                    SizedBox(width: 5),
+                    const Text('¿No tienes cuenta?', style: TextStyle(fontWeight: FontWeight.bold)),
+                    const SizedBox(width: 5),
                     GestureDetector(
-                      onTap: widget.showRegisterScreen,
-                      child: Text('Registrate ahora', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold))),
+                      onTap: widget.showRegisterPage,
+                      child: GestureDetector(
+                        onTap: widget.showRegisterPage,
+                        child: const Text(
+                          'Registrate ahora', 
+                          style: TextStyle(
+                            color: Colors.blue, 
+                            fontWeight: FontWeight.bold
+                          )
+                        )
+                      )
+                    ),
                   ],
                 )
               ],

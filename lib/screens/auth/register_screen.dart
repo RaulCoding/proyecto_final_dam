@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class RegisterScreen extends StatefulWidget {
-  final VoidCallback showLoginScreen;
-  const RegisterScreen({super.key, required this.showLoginScreen});
+class RegisterPage extends StatefulWidget {
+  final VoidCallback showLoginPage;
+  const RegisterPage({super.key, required this.showLoginPage});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _RegisterPageState extends State<RegisterPage> {
   
   //Controladores de texto
   final _emailController = TextEditingController();
@@ -158,7 +158,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     const Text('¿No tienes cuenta?', style: TextStyle(fontWeight: FontWeight.bold)),
                     const SizedBox(width: 5),
                     GestureDetector(
-                      onTap: widget.showLoginScreen,
+                      onTap: widget.showLoginPage,
                       child: const Text('Registrate ahora', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold))),
                   ],
                 )
