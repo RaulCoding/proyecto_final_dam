@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_final_dam/screens/screens_barrell.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
+import 'package:proyecto_final_dam/screens/screens_barrell.dart';
+
 void main() async {
-  
   WidgetsFlutterBinding.ensureInitialized();
-  
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -21,7 +21,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const LoginScreen(),
+      home: Checking(),
       theme: ThemeData(primarySwatch: Colors.yellow),
     );
   }
