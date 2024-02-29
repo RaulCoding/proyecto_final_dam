@@ -1,7 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:proyecto_final_dam/screens/home_screen.dart';
-import 'package:proyecto_final_dam/screens/login_screen.dart';
+import 'package:proyecto_final_dam/screens/screens_barrell.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
+
 class Checking extends StatelessWidget {
   const Checking({super.key});
 
@@ -14,7 +15,7 @@ class Checking extends StatelessWidget {
           if(snapshot.hasData){
             return  HomeScreen();
           } else {
-            return  LoginScreen();
+            return  AuthScreen();
           }
         }
       ),

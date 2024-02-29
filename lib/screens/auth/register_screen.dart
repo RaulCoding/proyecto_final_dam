@@ -1,31 +1,29 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatefulWidget {
+  final VoidCallback showLoginScreen;
+  const RegisterScreen({super.key, required this.showLoginScreen});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   
   //Controladores de texto
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   
-  Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: _emailController.text.trim() , 
-      password: _passwordController.text.trim(),
-    );
-  }
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
+  }
+  
+  Future signUp() async {
+    
   }
   
   @override
@@ -47,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Text('TO DO LIST APP',style: GoogleFonts.bebasNeue(fontSize: 52),
                 ),
                 const SizedBox(height: 10),
-                const Text('Inicie sesión para comenzar',style: TextStyle(fontSize: 20),
+                const Text('Registrate para comenzar',style: TextStyle(fontSize: 20),
                 ),
                 
                 const SizedBox(height: 50),
@@ -101,13 +99,42 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 
+                
                 const SizedBox(height: 10),
+                
+                //campo de texto contraseña
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      border: Border.all(color: Colors.white),
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: TextField(
+                        controller: _passwordController,
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Contraseña',
+                          hintStyle: TextStyle(color: Colors.black38),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                
+                
+                const SizedBox(height: 10),
+                
                              
-                //Botón de iniciar sesión
+                //Botón de registro
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: GestureDetector(
-                    onTap: signIn,
+                    onTap: signUp,
                     child: Container(
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
@@ -125,12 +152,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 10),
                 
                 //No es miembro? registrarse
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('¿No tienes cuenta?', style: TextStyle(fontWeight: FontWeight.bold)),
-                    SizedBox(width: 5),
-                    Text('Registrate ahora', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
+                    const Text('¿No tienes cuenta?', style: TextStyle(fontWeight: FontWeight.bold)),
+                    const SizedBox(width: 5),
+                    GestureDetector(
+                      onTap: widget.showLoginScreen,
+                      child: const Text('Registrate ahora', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold))),
                   ],
                 )
               ],

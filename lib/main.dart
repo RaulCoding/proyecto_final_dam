@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'models/firebase_options.dart';
 
 import 'package:proyecto_final_dam/screens/screens_barrell.dart';
 
@@ -21,7 +21,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Checking(),
+      home: const Checking(),
       theme: ThemeData(primarySwatch: Colors.yellow),
     );
   }
