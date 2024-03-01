@@ -1,6 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:google_fonts/google_fonts.dart';
+
+import 'package:proyecto_final_dam/screens/screens_barrell.dart';
 
 class LoginScreen extends StatefulWidget {
   final VoidCallback showRegisterScreen;
@@ -61,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     decoration: BoxDecoration(
                       color: Colors.grey[200],
                       border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(100),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 15.0),
@@ -86,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     decoration: BoxDecoration(
                       color: Colors.grey[200],
                       border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(100),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 15.0),
@@ -114,7 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
                         color: Colors.lightBlue,
-                        borderRadius: BorderRadius.circular(100)  
+                        borderRadius: BorderRadius.circular(12)  
                       ),
                       child: const Center(
                           child: Text('Iniciar Sesión',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
@@ -143,7 +147,23 @@ class _LoginScreenState extends State<LoginScreen> {
                       )
                     ),
                   ],
-                )
+                ),
+                const SizedBox(height: 10),
+                
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(
+                      context, MaterialPageRoute(
+                        builder: (context){
+                            return ForgotPasswordScreen();
+                        }
+                      )
+                    );
+                  },
+                  child: const Text(
+                    '¿No recuerda su contraseña?'
+                  )
+                ),
               ],
             ),
           ),

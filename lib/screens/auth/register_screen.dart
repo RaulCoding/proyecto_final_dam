@@ -75,7 +75,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     decoration: BoxDecoration(
                       color: Colors.grey[200],
                       border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(100),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 15.0),
@@ -100,7 +100,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     decoration: BoxDecoration(
                       color: Colors.grey[200],
                       border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(100),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 15.0),
@@ -126,7 +126,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     decoration: BoxDecoration(
                       color: Colors.grey[200],
                       border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(100),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 15.0),
@@ -154,7 +154,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
                         color: Colors.lightBlue,
-                        borderRadius: BorderRadius.circular(100)  
+                        borderRadius: BorderRadius.circular(12)  
                       ),
                       child: const Center(
                           child: Text('Registrarse',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
