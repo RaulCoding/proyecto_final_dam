@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_final_dam/screens/auth/login_screen.dart';
-import 'package:proyecto_final_dam/screens/auth/register_page.dart';
+import 'package:proyecto_final_dam/screens/auth/register_screen.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -24,9 +24,9 @@ class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     if (showLoginPage){
-      return LoginScreen(showRegisterPage: toggleScreen);
+      return LoginScreen(showRegisterScreen: toggleScreen);
     }else {
-      return RegisterPage(showLoginPage: toggleScreen);
+      return RegisterScreen(showLoginScreen: toggleScreen);
     }
   }
 }

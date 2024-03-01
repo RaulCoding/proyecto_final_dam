@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginScreen extends StatefulWidget {
-  final VoidCallback showRegisterPage;
-  const LoginScreen({super.key, required this.showRegisterPage});
+  final VoidCallback showRegisterScreen;
+  const LoginScreen({super.key, required this.showRegisterScreen});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -133,7 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     const Text('¿No tienes cuenta?', style: TextStyle(fontWeight: FontWeight.bold)),
                     const SizedBox(width: 5),
                     GestureDetector(
-                      onTap: widget.showRegisterPage,
+                      onTap: widget.showRegisterScreen,
                       child: const Text(
                         'Registrate ahora', 
                         style: TextStyle(

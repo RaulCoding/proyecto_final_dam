@@ -2,15 +2,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class RegisterPage extends StatefulWidget {
-  final VoidCallback showLoginPage;
-  const RegisterPage({super.key, required this.showLoginPage});
+class RegisterScreen extends StatefulWidget {
+  final VoidCallback showLoginScreen;
+  const RegisterScreen({super.key, required this.showLoginScreen});
 
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _RegisterScreenState extends State<RegisterScreen> {
   
   //Controladores de texto
   final _emailController = TextEditingController();
@@ -173,7 +173,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     const Text('Ya estoy registrado', style: TextStyle(fontWeight: FontWeight.bold)),
                     const SizedBox(width: 5),
                     GestureDetector(
-                      onTap: widget.showLoginPage,
+                      onTap: widget.showLoginScreen,
                       child: const Text(
                         'Iniciar Sesión', 
                         style: TextStyle(
