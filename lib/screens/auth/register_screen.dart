@@ -1,5 +1,9 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -16,24 +20,54 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  final _firstNameController = TextEditingController();
+  final _lastNameController = TextEditingController();
+  final _ageController = TextEditingController();
   
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
-    
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _ageController.dispose();
+
     super.dispose();
   }
   
   Future signUp() async {
+    
+    //creando el usuario
     if(passwordConfirmed()){
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: _emailController.text.trim(), 
       password: _passwordController.text.trim(),
     );
+    
+    //Añade los detalles del usuario
+    addUserDetails(
+      _firstNameController.text.trim(), 
+      _lastNameController.text.trim(), 
+      _emailController.text.trim(), 
+      int.parse(_ageController.text.trim())
+    );
     }
   }
+
+  
+  Future addUserDetails(
+    String firstName, String lastName, String email, int age) async{
+  await FirebaseFirestore.instance.collection('users').add({
+      'Nombre': firstName,
+      'Apellidos': lastName,
+      'edad': age,
+      'email': email,
+    });
+  }
+  
+  
+  
   
   bool passwordConfirmed(){
     if (_passwordController.text.trim() == _confirmPasswordController.text.trim()){
@@ -67,6 +101,85 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 
                 const SizedBox(height: 50),
+                
+                
+              //Nombre 
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      border: Border.all(color: Colors.white),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: TextField(
+                        controller: _firstNameController,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Nombre',
+                          hintStyle: TextStyle(color: Colors.black38),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                
+                const SizedBox(height: 10),
+                
+                //Apellidos
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      border: Border.all(color: Colors.white),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: TextField(
+                        controller: _lastNameController,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Apellidos',
+                          hintStyle: TextStyle(color: Colors.black38),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                
+                const SizedBox(height: 10),
+                
+                //Edad
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      border: Border.all(color: Colors.white),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: TextFormField(
+                        controller: _ageController,
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Edad',
+                          hintStyle: TextStyle(color: Colors.black38),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                
+                const SizedBox(height: 10),
+                
                 
                 //campo de texto email
                 Padding(
