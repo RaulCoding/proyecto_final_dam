@@ -25,8 +25,15 @@ class FirestoreService{
       return tasksStream;
   }
   // Actualiza las notas dadas al doc id
-  
+  Future<void> updateTask (String docID, String newTask){
+    return tasks.doc(docID).update({
+      'task': newTask,
+      'timestamp': Timestamp.now(),
+    });
+  }
   // Borra las notas dadas al doc id
-  
-  
+  Future<void> deleteTask(String docID){
+    return tasks.doc(docID).delete();
+  }
+    
 }

@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import 'package:proyecto_final_dam/components/components_barrell.dart';
 import 'package:proyecto_final_dam/utils/firestore.dart';
 
 
@@ -22,34 +21,46 @@ class _HomeScreenState extends State<HomeScreen> {
   final _controller = TextEditingController();
   
   //crear nueva tarea
-  void createNewTask(){
+  void openTaskBox({String? docID}) {
     showDialog(
       context: context, 
-      builder: (context){
-        return DialogBox(
+      builder: (context)=> AlertDialog(
+        //text user input
+        content: TextField(
           controller: _controller,
-          onSave: saveNewTask,
-          onCancel: () => Navigator.of(context).pop(),
-        );
-      },
+        ),
+        actions: [
+          ElevatedButton(
+            onPressed: (){
+              //añadir nueva tarea
+              if (docID == null){
+                firestoreService.addTask(_controller.text);
+              }
+              //Si ya tiene un docID
+              else{
+                firestoreService.updateTask(docID, _controller.text);
+              }
+              
+              //Limpia el controlador de texto
+              _controller.clear();
+              
+              //cierra la ventana
+              Navigator.pop(context);
+              
+            }, 
+            child: const Text('Añadir')
+          )
+        ],
+      ) 
     );
-  }
-  
-  //Guardar nueva tarea
-  void saveNewTask(){
-    setState(() {
-      firestoreService.addTask(_controller.text);
-      _controller.clear();
-    });
-      Navigator.of(context).pop();
   }
   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Tasks")),
+      appBar: AppBar(title: const Text("Tasks")),
       floatingActionButton: FloatingActionButton(
-        onPressed: createNewTask,
+        onPressed: openTaskBox,
         child: const Icon(Icons.add),
       ),
       body: StreamBuilder<QuerySnapshot>(
@@ -74,6 +85,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 //Lo muestra como una nota
                 return ListTile(
                   title: Text(taskText),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        onPressed: () => openTaskBox(docID: docID),
+                        icon: const Icon(Icons.settings),
+                      ),
+                      IconButton(
+                        onPressed: () => firestoreService.deleteTask(docID), 
+                        icon: const Icon(Icons.delete))
+                    ],
+                  ),
                 );
               } ,
             );
