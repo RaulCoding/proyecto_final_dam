@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
-import 'components/firebase_options.dart';
+import 'utils/firebase_options.dart';
 
 import 'package:proyecto_final_dam/screens/screens_barrell.dart';
 

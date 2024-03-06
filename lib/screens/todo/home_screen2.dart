@@ -1,17 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:proyecto_final_dam/components/components_barrell.dart';
-import 'package:proyecto_final_dam/components/firestore.dart';
+import 'package:proyecto_final_dam/utils/firestore.dart';
 
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomeScreen2 extends StatefulWidget {
+  const HomeScreen2({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomeScreen2> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen2> {
   
   //firestore
   final FirestoreService firestoreService = FirestoreService();
@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void saveNewTask(){
     setState(() {
       toDoList.add([_controller.text, false]);
-      firestoreService.addNote(_controller.text);
+      firestoreService.addTask(_controller.text);
       _controller.clear();
     });
       Navigator.of(context).pop();
