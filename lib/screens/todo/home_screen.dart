@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void saveNewTask(){
     setState(() {
       toDoList.add([_controller.text, false]);
-      firestoreService.addNote(_controller.text);
+      firestoreService.addTask(_controller.text);
       _controller.clear();
     });
       Navigator.of(context).pop();
@@ -61,6 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void deleteTask(int index){
     setState(() {
       toDoList.removeAt(index);
+      firestoreService.deleteTask(index);
     });
   }
   
