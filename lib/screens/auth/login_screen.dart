@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:proyecto_final_dam/screens/screens_barrell.dart';
+import 'package:proyecto_final_dam/utils/utils.dart';
 
 class LoginScreen extends StatefulWidget {
   final VoidCallback showRegisterScreen;
@@ -15,6 +17,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  
+  //key control formato email formulario
+  final GlobalKey<FormState> _formKey = GlobalKey();
   
   //Controladores de texto
   final _emailController = TextEditingController();
@@ -28,10 +33,12 @@ class _LoginScreenState extends State<LoginScreen> {
   }
   
   Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: _emailController.text.trim() , 
-      password: _passwordController.text.trim(),
-    );
+    if (_formKey.currentState?.validate() ?? false) {
+  await FirebaseAuth.instance.signInWithEmailAndPassword(
+    email: _emailController.text.trim() , 
+    password: _passwordController.text.trim(),
+  );
+}
   }
   
   @override
@@ -59,72 +66,92 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 50),
                 
                 //campo de texto email
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
-                      child: TextField(
-                        controller: _emailController,
-                        decoration: const InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Dirección de correo electrónico',
-                          hintStyle: TextStyle(color: Colors.black38),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                
-                const SizedBox(height: 10),
-                
-                //campo de texto contraseña
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
-                      child: TextField(
-                        controller: _passwordController,
-                        obscureText: true,
-                        decoration: const InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Contraseña',
-                          hintStyle: TextStyle(color: Colors.black38),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                
-                const SizedBox(height: 10),
-                             
-                //Botón de iniciar sesión
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: GestureDetector(
-                    onTap: signIn,
-                    child: Container(
-                      padding: const EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                        color: Colors.lightBlue,
-                        borderRadius: BorderRadius.circular(12)  
-                      ),
-                      child: const Center(
-                          child: Text('Iniciar Sesión',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            border: Border.all(color: Colors.white),
+                            borderRadius: BorderRadius.circular(12),
                           ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 15.0),
+                            child: TextFormField(
+                              validator: (value) {
+                                if(value?.isEmpty ?? true){
+                                  return "Este campo no puede estar vacio";
+                                } else if(!Utils.esCorreoValido(value ?? "")) {
+                                  return "El texto debe tener un formato de correo";
+                                }
+                                  return null;
+                              },
+                              controller: _emailController,
+                              decoration: const InputDecoration(
+                                border: InputBorder.none,
+                                hintText: 'Dirección de correo electrónico',
+                                hintStyle: TextStyle(color: Colors.black38),
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                      
+                      const SizedBox(height: 10),
+                      
+                      //campo de texto contraseña
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            border: Border.all(color: Colors.white),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 15.0),
+                            child: TextFormField(
+                              validator: (value) {
+                                if(value?.isEmpty ?? true){
+                                  return "Este campo no puede estar vacio";
+                                } return null;
+                              },
+                              controller: _passwordController,
+                              obscureText: true,
+                              decoration: const InputDecoration(
+                                border: InputBorder.none,
+                                hintText: 'Contraseña',
+                                hintStyle: TextStyle(color: Colors.black38),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      
+                      const SizedBox(height: 10),
+                                   
+                      //Botón de iniciar sesión
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25),
+                        child: GestureDetector(
+                          onTap: signIn,
+                          child: Container(
+                            padding: const EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              color: Colors.lightBlue,
+                              borderRadius: BorderRadius.circular(12)  
+                            ),
+                            child: const Center(
+                                child: Text('Iniciar Sesión',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,),
+                                ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:proyecto_final_dam/components/components_barrell.dart';
+import 'package:proyecto_final_dam/components/firestore.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -11,6 +12,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  
+  //firestore
+  final FirestoreService firestoreService = FirestoreService();
+  
   
   //controlador del texto
   final _controller = TextEditingController();
@@ -32,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void saveNewTask(){
     setState(() {
       toDoList.add([_controller.text, false]);
+      firestoreService.addNote(_controller.text);
       _controller.clear();
     });
       Navigator.of(context).pop();
