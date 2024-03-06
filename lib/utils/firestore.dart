@@ -18,12 +18,12 @@ class FirestoreService{
   
   
   //Devuelve las notas de la DB  
-  // Stream<QuerySnapshot>getNotesStream(){
-    // final noteStream =
-      // notes.orderBy('timestamp', descending: true).snapshots();
-      // 
-      // return notesStream;
-  // }
+  Stream<QuerySnapshot>getTasksStream(){
+    final tasksStream =
+      tasks.orderBy('timestamp', descending: true).snapshots();
+      
+      return tasksStream;
+  }
   // Actualiza las notas dadas al doc id
   
   // Borra las notas dadas al doc id
