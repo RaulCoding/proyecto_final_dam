@@ -21,8 +21,18 @@ class _HomeScreenState extends State<HomeScreen2> {
   final _controller = TextEditingController();
   
   //Lista de tareas
-  List toDoList = [];
-   
+  List toDoList = [
+    ["Hacer tuto", false],
+    ["Hacer ejercicio", false]
+  ];
+  
+  //Cuadradito pulsado
+  void checkBoxChanged(bool? value, int index){
+    setState(() {
+      toDoList[index][1] = !toDoList[index][1];
+    });
+  }
+  
   //Guardar nueva tarea
   void saveNewTask(){
     setState(() {
@@ -85,6 +95,7 @@ class _HomeScreenState extends State<HomeScreen2> {
           return ToDoTile(
             taskName: toDoList[index][0], 
             taskCompleted: toDoList[index][1], 
+            onChanged: (value)=> checkBoxChanged(value, index),
             deleteFunction: (context) => deleteTask(index),
           );
         }

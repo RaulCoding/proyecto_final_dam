@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_final_dam/components/components_barrell.dart';
-import 'package:proyecto_final_dam/components/savingButton.dart';
-import 'package:proyecto_final_dam/utils/firestore.dart';
-import 'pack';
 
 class DialogBox extends StatelessWidget {
   final TextEditingController controller;
@@ -41,30 +38,11 @@ class DialogBox extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 //Botón para guardar
-                SaveButton(
-                  text: "Guardar", 
-                  onPressed: (){
-                    //añadir nueva tarea
-                    if (docID == null){
-                      firestoreService.addTask(_controller.text);
-                    }
-                    //Si ya tiene un docID
-                    else{
-                      firestoreService.updateTask(docID, _controller.text);
-                    }
-                    
-                    //Limpia el controlador de texto
-                    _controller.clear();
-                    
-                    //cierra la ventana
-                    Navigator.pop(context);
-                    
-                  }, 
-                )
-      //Espacio entre Botones
-                // const SizedBox(width: 7),
-                // Botón para cancelar
-                // MyButton(text: "Cancelar", onPressed: onCancel),
+                MyButton(text: "Guardar", onPressed: onSave),
+                //Espacio entre Botones
+                const SizedBox(width: 7),
+                //Botón para cancelar
+                MyButton(text: "Cancelar", onPressed: onCancel),
               ],
             )
           ]
