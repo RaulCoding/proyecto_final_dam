@@ -4,14 +4,12 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 class ToDoTile extends StatelessWidget {
   final String taskName;
   final bool taskCompleted;
-  final Function(bool?)? onChanged;
   final Function(BuildContext)? deleteFunction;
   
   const ToDoTile({
     super.key, 
     required this.taskName, 
     required this.taskCompleted,
-    required this.onChanged,
     required this.deleteFunction,
   });
 
@@ -39,12 +37,6 @@ class ToDoTile extends StatelessWidget {
           ),
           child: Row(
             children: [
-              //checkbox
-              Checkbox(
-                value: taskCompleted, 
-                onChanged: onChanged,
-                activeColor: Colors.black,
-                ),
               
               //nombre de la aplicación
               Text(
