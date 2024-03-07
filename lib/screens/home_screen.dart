@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import 'package:proyecto_final_dam/utils/firestore.dart';
+import 'package:proyecto_final_dam/utils/utils_barrell.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -58,7 +58,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Tasks")),
+      appBar: AppBar(
+        title: const Text("Tasks", textAlign: TextAlign.center),
+        centerTitle: true,
+        backgroundColor: Colors.purple[200],
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: openTaskBox,
         child: const Icon(Icons.add),
