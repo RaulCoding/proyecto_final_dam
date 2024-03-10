@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:proyecto_final_dam/config/models/task_model.dart';
 
 class FirestoreService{
   
@@ -8,11 +9,8 @@ class FirestoreService{
   
   
   //crea una nueva nota
-  Future<void> addTask(String task){
-    return tasks.add({
-      'task': task,
-      'timestamp': Timestamp.now(),
-    });
+  Future<void> addTask(Task task){
+    return tasks.add(task.toJson());
   }
   
   
