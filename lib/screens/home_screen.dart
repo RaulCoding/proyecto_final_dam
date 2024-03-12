@@ -79,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     _controller.clear();
                     Navigator.pop(context);
                   }, 
-                  child: const Text("Cancelar")
+                  child:  Text("Cancelar")
                 ),
               )
             ],
