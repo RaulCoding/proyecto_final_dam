@@ -10,8 +10,6 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  
-  
   //inicialmente muestra la loginScreen
   bool showLoginPage = true;
   

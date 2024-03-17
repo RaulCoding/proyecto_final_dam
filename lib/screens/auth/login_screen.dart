@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:proyecto_final_dam/screens/screens_barrell.dart';
+import 'package:proyecto_final_dam/services/firebase_services/firebase_user_service.dart';
 import 'package:proyecto_final_dam/utils/utils.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -24,7 +24,8 @@ class _LoginScreenState extends State<LoginScreen> {
   //Controladores de texto
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  
+  final FirebaseUserService _firestoreService = FirebaseUserService();
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -34,10 +35,8 @@ class _LoginScreenState extends State<LoginScreen> {
   
   Future signIn() async {
     if (_formKey.currentState?.validate() ?? false) {
-  await FirebaseAuth.instance.signInWithEmailAndPassword(
-    email: _emailController.text.trim() , 
-    password: _passwordController.text.trim(),
-  );
+      await _firestoreService.login(_emailController.text.trim(), _passwordController.text.trim())
+;
 }
   }
   
@@ -84,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               validator: (value) {
                                 if(value?.isEmpty ?? true){
                                   return "Este campo no puede estar vacio";
-                                } else if(!Utils.esCorreoValido(value ?? "")) {
+                                } else if(!Utils.isValidEmail(value ?? "")) {
                                   return "El texto debe tener un formato de correo";
                                 }
                                   return null;
