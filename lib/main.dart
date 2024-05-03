@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
-
-import 'package:firebase_core/firebase_core.dart';
-import 'package:proyecto_final_dam/services/firebase_services/firebase_options.dart';
-
 import 'package:proyecto_final_dam/screens/screens_barrell.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  
-  runApp(const MainApp());
+
+  runApp(MainApp());
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const Checking(),
+      initialRoute: SplashScreen.route,
+      navigatorKey: navigatorKey,
       theme: ThemeData(primarySwatch: Colors.yellow),
+      routes: {
+        SplashScreen.route: (context) => const SplashScreen(),
+        /// AUTH Routes
+        RegisterScreen.route: (context) => RegisterScreen(),
+        LoginScreen.route: (context) => const LoginScreen(),
+
+        /// MyTODOList Routes
+        TodoListScreen.route: (context) => const TodoListScreen(),
+      },
     );
   }
 }

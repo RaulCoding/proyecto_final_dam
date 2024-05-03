@@ -4,7 +4,13 @@ class PrimaryTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final String? Function(String?)? validator;
-  const PrimaryTextField({required this.controller, required this.hintText, this.validator, super.key});
+  final bool obscureText;
+  const PrimaryTextField(
+      {this.obscureText = false,
+      required this.controller,
+      required this.hintText,
+      this.validator,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +24,9 @@ class PrimaryTextField extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(left: 15.0),
         child: TextFormField(
+          obscureText: obscureText,
           controller: controller,
-          decoration:  InputDecoration(
+          decoration: InputDecoration(
             border: InputBorder.none,
             hintText: hintText,
             hintStyle: const TextStyle(color: Colors.black38),
