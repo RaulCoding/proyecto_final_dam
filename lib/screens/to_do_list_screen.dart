@@ -64,6 +64,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
+              backgroundColor: Color(0xff222831),
               //text user input
               content: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -71,11 +72,15 @@ class _TodoListScreenState extends State<TodoListScreen> {
                   Text(
                     title,
                     style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 18),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Color(0xffEEEEEE)),
                   ),
                   if (taskBoxType != TaskBoxType.delete)
                     TextFormField(
+                      cursorColor: Colors.white,
                       controller: _controller,
+                      style: TextStyle(color: Color(0xFFEEEEEE)),
                     ),
                 ],
               ),
@@ -85,6 +90,9 @@ class _TodoListScreenState extends State<TodoListScreen> {
                   children: [
                     Expanded(
                       child: ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                const Color(0xFFEEEEEE))),
                         onPressed: () async {
                           if (taskBoxType == TaskBoxType.create ||
                               taskBoxType == TaskBoxType.updateName) {
@@ -114,17 +122,26 @@ class _TodoListScreenState extends State<TodoListScreen> {
                             Navigator.pop(context);
                           }
                         },
-                        child: const Text('Aceptar'),
+                        child: const Text(
+                          'Aceptar',
+                          style: TextStyle(color: Color(0xFF222831)),
+                        ),
                       ),
                     ),
                     const SizedBox(width: 5),
                     Expanded(
                       child: ElevatedButton(
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  const Color(0xFFEEEEEE))),
                           onPressed: () {
                             _controller.clear();
                             Navigator.pop(context);
                           },
-                          child: const Text("Cancelar")),
+                          child: const Text(
+                            "Cancelar",
+                            style: TextStyle(color: Color(0xFF222831)),
+                          )),
                     )
                   ],
                 )
@@ -136,14 +153,17 @@ class _TodoListScreenState extends State<TodoListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Tasks"),
+        title: const Text(
+          "Tasks",
+          style: TextStyle(color: Color(0xffeeeeee)),
+        ),
         centerTitle: true,
-        backgroundColor: Colors.blue,
+        backgroundColor: Color(0xFF222831),
         actions: <Widget>[
           IconButton(
             icon: const Icon(
               Icons.logout,
-              color: Colors.black,
+              color: Color(0xffeff3f5),
             ),
             onPressed: () async {
               // Recomiendo un popUp de "¿Seguro que quieres salir?" | Sí/No
@@ -153,14 +173,20 @@ class _TodoListScreenState extends State<TodoListScreen> {
           ),
         ],
       ),
+      backgroundColor: Color(0xff31363f),
       floatingActionButton: _noInternetConnection
           ? null
           : FloatingActionButton(
+              backgroundColor: Color(0xFF76ABAE),
               onPressed: () => openTaskBox(
                 title: "Añadir nueva tarea",
                 taskBoxType: TaskBoxType.create,
               ),
-              child: const Icon(Icons.add),
+              child: const Icon(
+                Icons.add_box,
+                color: Color(0xffeeeeee),
+                shadows: [],
+              ),
             ),
       body: Column(
         children: [
@@ -182,12 +208,15 @@ class _TodoListScreenState extends State<TodoListScreen> {
                         padding: const EdgeInsets.symmetric(vertical: 20),
                         decoration: BoxDecoration(
                           color: taskList[index].status == false
-                              ? Colors.yellow
-                              : Colors.lightGreen,
+                              ? Color(0xffbb86fc)
+                              : Color(0xff76abae),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: ListTile(
-                          title: Text(taskList[index].taskName ?? "-"),
+                          title: Text(
+                            taskList[index].taskName ?? "-",
+                            style: TextStyle(color: Color(0xff222831)),
+                          ),
                           trailing: !_noInternetConnection
                               ? Row(
                                   mainAxisSize: MainAxisSize.min,
@@ -209,6 +238,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
                                       icon: const Icon(Icons.delete),
                                     ),
                                     IconButton(
+                                      color: const Color(0xFFEEEEEE),
                                       splashColor: Colors.transparent,
                                       onPressed: () async {
                                         if (taskList[index].status != null &&
@@ -226,11 +256,11 @@ class _TodoListScreenState extends State<TodoListScreen> {
                                       icon: taskList[index].status == false
                                           ? const Icon(
                                               Icons.check,
-                                              color: Colors.green,
+                                              color: Color(0xFFEEEEEE),
                                             )
                                           : const Icon(
                                               Icons.close,
-                                              color: Colors.transparent,
+                                              color: Colors.red,
                                             ),
                                     ),
                                   ],
@@ -242,7 +272,10 @@ class _TodoListScreenState extends State<TodoListScreen> {
                     },
                   ),
                 )
-              : const Text("Toca el icono '+' para añadir una nota"),
+              : const Text(
+                  "Toca el icono '+' para añadir una nota",
+                  style: TextStyle(color: Color(0xFFEEEEEE)),
+                ),
         ],
       ),
     );

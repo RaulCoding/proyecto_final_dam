@@ -19,12 +19,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   //Controladores de texto
-  final _nameController = TextEditingController(text: "TestName");
-  final _surnameController = TextEditingController(text: "Test Surname");
-  final _ageController = TextEditingController(text: "50");
-  final _emailController = TextEditingController(text: "testemail@email.com");
-  final _passwordController = TextEditingController(text: "Apptest1!");
-  final _confirmPasswordController = TextEditingController(text: "Apptest1!");
+  final _nameController = TextEditingController();
+  final _surnameController = TextEditingController();
+  final _ageController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
   @override
   void dispose() {
