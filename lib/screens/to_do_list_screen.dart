@@ -154,8 +154,9 @@ class _TodoListScreenState extends State<TodoListScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Tasks",
-          style: TextStyle(color: Color(0xffeeeeee)),
+          "Notes",
+          style:
+              TextStyle(color: Color(0xffeeeeee), fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         backgroundColor: Color(0xFF222831),
@@ -215,7 +216,9 @@ class _TodoListScreenState extends State<TodoListScreen> {
                         child: ListTile(
                           title: Text(
                             taskList[index].taskName ?? "-",
-                            style: TextStyle(color: Color(0xff222831)),
+                            style: TextStyle(
+                                color: Color(0xff222831),
+                                fontWeight: FontWeight.w500),
                           ),
                           trailing: !_noInternetConnection
                               ? Row(

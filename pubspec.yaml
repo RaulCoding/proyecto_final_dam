@@ -9,7 +9,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_slidable: ^3.0.1
   google_fonts: ^6.1.0
   http: ^1.2.1
   flutter_secure_storage: ^9.0.0
