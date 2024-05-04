@@ -54,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFF31363f),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -65,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 10),
                 const Text(
                   'Inicie sesión para comenzar',
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 20, color: Color(0xFFEEEEEE)),
                 ),
 
                 const SizedBox(height: 50),
@@ -147,13 +147,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Container(
                             padding: const EdgeInsets.all(20),
                             decoration: BoxDecoration(
-                                color: Colors.lightBlue,
+                                color: Color(0xff76abae),
                                 borderRadius: BorderRadius.circular(12)),
                             child: const Center(
                               child: Text(
                                 'Iniciar Sesión',
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: Color(0xff222831),
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
                                 ),
@@ -173,7 +173,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text('¿No tienes cuenta?',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFFEEEEEE))),
                     const SizedBox(width: 5),
                     GestureDetector(
                         onTap: () {

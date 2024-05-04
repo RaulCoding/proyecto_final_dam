@@ -11,13 +11,15 @@ class MainScreenTitle extends StatelessWidget {
       child: Column(
         children: [
           const Icon(
-            Icons.assignment,
+            Icons.assignment_turned_in_rounded,
             size: 100,
+            color: Color(0xffeeeeee),
           ),
           const SizedBox(height: 25),
           Text(
             'TO DO LIST APP',
-            style: GoogleFonts.bebasNeue(fontSize: 52),
+            style:
+                GoogleFonts.bebasNeue(fontSize: 52, color: Color(0xffeeeeee)),
           ),
         ],
       ),

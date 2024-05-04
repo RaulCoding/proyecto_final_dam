@@ -71,7 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xff31363f),
         body: SafeArea(
           child: Center(
             child: SingleChildScrollView(
@@ -85,7 +85,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     const SizedBox(height: 10),
                     const Text(
                       'Registrese para continuar',
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 20, color: Color(0xFFEEEEEE)),
                     ),
 
                     const SizedBox(height: 50),
@@ -165,7 +165,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         margin: const EdgeInsets.only(top: 20, bottom: 10),
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                            color: Colors.lightBlue,
+                            color: Color(0xff76abae),
                             borderRadius: BorderRadius.circular(12)),
                         child: const Center(
                           child: Text(
@@ -185,7 +185,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Text('Ya estoy registrado',
-                            style: TextStyle(fontWeight: FontWeight.bold)),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFFEEEEEE))),
                         const SizedBox(width: 5),
                         GestureDetector(
                           onTap: () {
