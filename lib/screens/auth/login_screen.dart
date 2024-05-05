@@ -20,9 +20,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
 
   //Controladores de texto
-  final _emailController =
-      TextEditingController(text: "raulhardplay3@gmail.com");
-  final _passwordController = TextEditingController(text: "pokemon");
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   void dispose() {
@@ -65,7 +64,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 10),
                 const Text(
                   'Inicie sesión para comenzar',
-                  style: TextStyle(fontSize: 20, color: Color(0xFFEEEEEE)),
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Color(0xFFEEEEEE),
+                      fontWeight: FontWeight.w500),
                 ),
 
                 const SizedBox(height: 50),

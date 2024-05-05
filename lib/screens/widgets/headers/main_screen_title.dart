@@ -17,7 +17,7 @@ class MainScreenTitle extends StatelessWidget {
           ),
           const SizedBox(height: 25),
           Text(
-            'TO DO LIST APP',
+            'My Notes',
             style:
                 GoogleFonts.bebasNeue(fontSize: 52, color: Color(0xffeeeeee)),
           ),

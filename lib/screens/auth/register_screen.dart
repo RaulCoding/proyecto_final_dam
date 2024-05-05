@@ -180,7 +180,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
 
-                    //No es miembro? registrarse
+                    //Ya estas registrado?
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

@@ -64,7 +64,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
-              backgroundColor: Color(0xff222831),
+              backgroundColor: const Color(0xff222831),
               //text user input
               content: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -80,7 +80,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
                     TextFormField(
                       cursorColor: Colors.white,
                       controller: _controller,
-                      style: TextStyle(color: Color(0xFFEEEEEE)),
+                      style: const TextStyle(color: Color(0xFFEEEEEE)),
                     ),
                 ],
               ),
@@ -159,7 +159,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
               TextStyle(color: Color(0xffeeeeee), fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
-        backgroundColor: Color(0xFF222831),
+        backgroundColor: const Color(0xFF222831),
         actions: <Widget>[
           IconButton(
             icon: const Icon(
@@ -167,18 +167,17 @@ class _TodoListScreenState extends State<TodoListScreen> {
               color: Color(0xffeff3f5),
             ),
             onPressed: () async {
-              // Recomiendo un popUp de "¿Seguro que quieres salir?" | Sí/No
               await SecureStorageService().deleteTokens();
               Navigator.pushReplacementNamed(context, LoginScreen.route);
             },
           ),
         ],
       ),
-      backgroundColor: Color(0xff31363f),
+      backgroundColor: const Color(0xff31363f),
       floatingActionButton: _noInternetConnection
           ? null
           : FloatingActionButton(
-              backgroundColor: Color(0xFF76ABAE),
+              backgroundColor: const Color(0xFF76ABAE),
               onPressed: () => openTaskBox(
                 title: "Añadir nueva tarea",
                 taskBoxType: TaskBoxType.create,
@@ -209,14 +208,14 @@ class _TodoListScreenState extends State<TodoListScreen> {
                         padding: const EdgeInsets.symmetric(vertical: 20),
                         decoration: BoxDecoration(
                           color: taskList[index].status == false
-                              ? Color(0xffbb86fc)
-                              : Color(0xff76abae),
+                              ? const Color(0xff76abae)
+                              : const Color(0xffbb86fc),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: ListTile(
                           title: Text(
                             taskList[index].taskName ?? "-",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Color(0xff222831),
                                 fontWeight: FontWeight.w500),
                           ),
